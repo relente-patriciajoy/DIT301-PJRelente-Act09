@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- item_message_received.xml - Message from other users -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:gravity="start">
+
+    <!-- User Avatar -->
+    <ImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_user_avatar"
+        android:background="@drawable/circle_background"
+        android:padding="8dp"
+        android:contentDescription="User avatar" />
+
+    <!-- Message Content -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="48dp">
+
+        <!-- Sender Name -->
+        <TextView
+            android:id="@+id/tv_sender_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="John Doe"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="#666666"
+            android:layout_marginBottom="4dp" />
+
+        <!-- Message Bubble -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <TextView
+                android:id="@+id/tv_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello! How are you?"
+                android:textSize="15sp"
+                android:textColor="#333333"
+                android:padding="12dp"
+                android:maxWidth="280dp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Timestamp -->
+        <TextView
+            android:id="@+id/tv_timestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10:30 AM"
+            android:textSize="11sp"
+            android:textColor="#999999"
+            android:layout_marginTop="4dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+<!-- ========================================== -->
+
+<!-- item_message_sent.xml - Message from current user -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:gravity="end">
+
+    <!-- Message Content -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="end">
+
+        <!-- Message Bubble -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="#2196F3">
+
+            <TextView
+                android:id="@+id/tv_message_sent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="I'm doing great, thanks!"
+                android:textSize="15sp"
+                android:textColor="#FFFFFF"
+                android:padding="12dp"
+                android:maxWidth="280dp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Timestamp and Status -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:id="@+id/tv_timestamp_sent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10:31 AM"
+                android:textSize="11sp"
+                android:textColor="#999999" />
+
+            <!-- Read Receipt Icon -->
+            <ImageView
+                android:id="@+id/iv_read_receipt"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_check_double"
+                android:tint="#4CAF50"
+                android:layout_marginStart="4dp"
+                android:contentDescription="Message read" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- User Avatar (Current User) -->
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_user_avatar_current"
+        android:background="@drawable/circle_background_blue"
+        android:padding="8dp"
+        android:contentDescription="Your avatar" />
+
+</LinearLayout>

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Chat App - UI Mockup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1400px;
+        }
+
+        .phone-mockup {
+            width: 360px;
+            background: #fff;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .phone-header {
+            background: #000;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .notch {
+            width: 120px;
+            height: 20px;
+            background: #000;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .screen {
+            height: 700px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Login Screen */
+        .login-screen {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 50%, #1565C0 100%);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .login-logo {
+            width: 100px;
+            height: 100px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            margin-bottom: 24px;
+        }
+
+        .login-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            font-size: 14px;
+            color: #e0e0e0;
+            margin-bottom: 48px;
+            text-align: center;
+        }
+
+        .login-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            width: 100%;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        .input-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .btn-primary {
+            background: #2196F3;
+            color: #fff;
+        }
+
+        .btn-outline {
+            background: #fff;
+            color: #666;
+            border: 1px solid #e0e0e0;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .divider-text {
+            padding: 0 16px;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .powered-by {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #e0e0e0;
+        }
+
+        /* Chat Screen */
+        .chat-screen {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: #f5f5f5;
+        }
+
+        .chat-header {
+            background: #2196F3;
+            color: #fff;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-title-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .online-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #4caf50;
+            border-radius: 50%;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+        }
+
+        .message {
+            display: flex;
+            margin-bottom: 16px;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-received {
+            justify-content: flex-start;
+        }
+
+        .message-sent {
+            justify-content: flex-end;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background: #e3f2fd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .avatar-sent {
+            background: #bbdefb;
+        }
+
+        .message-content {
+            max-width: 70%;
+            margin: 0 8px;
+        }
+
+        .sender-name {
+            font-size: 12px;
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .message-bubble {
+            background: #fff;
+            padding: 12px 16px;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .message-bubble-sent {
+            background: #2196F3;
+            color: #fff;
+        }
+
+        .message-text {
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .message-time {
+            font-size: 11px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        .chat-input-container {
+            background: #fff;
+            padding: 12px;
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+        }
+
+        .typing-indicator {
+            font-size: 12px;
+            color: #999;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .input-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .message-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 24px;
+            font-size: 14px;
+        }
+
+        .send-btn {
+            width: 48px;
+            height: 48px;
+            background: #2196F3;
+            border: none;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Firestore Console Screen */
+        .console-screen {
+            height: 100%;
+            background: #263238;
+            padding: 16px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        .console-header {
+            color: #4caf50;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #37474f;
+        }
+
+        .console-path {
+            color: #90caf9;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .console-data {
+            background: #1e272e;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-left: 3px solid #4caf50;
+        }
+
+        .console-key {
+            color: #f48fb1;
+            font-size: 13px;
+        }
+
+        .console-value {
+            color: #fff59d;
+            font-size: 13px;
+        }
+
+        .console-string {
+            color: #a5d6a7;
+        }
+
+        .console-number {
+            color: #81d4fa;
+        }
+
+        .screen-label {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Login Screen -->
+        <div>
+            <div class="phone-mockup">
+                <div class="phone-header">
+                    <div class="notch"></div>
+                </div>
+                <div class="screen">
+                    <div class="login-screen">
+                        <div class="login-logo">💬</div>
+                        <div class="login-title">Firebase Chat</div>
+                        <div class="login-subtitle">Real-time messaging powered by Firebase</div>
+                        
+                        <div class="login-card">
+                            <div class="input-group">
+                                <label class="input-label">Email</label>
+                                <input type="text" class="input-field" value="user@example.com" readonly>
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Password</label>
+                                <input type="password" class="input-field" value="••••••••" readonly>
+                            </div>
+                            <button class="btn btn-primary">Login</button>
+                            
+                            <div class="divider">
+                                <span class="divider-text">OR</span>
+                            </div>
+                            
+                            <button class="btn btn-outline">🔍 Sign in with Google</button>
+                            <button class="btn btn-outline">Continue as Guest</button>
+                        </div>
+                        
+                        <div class="powered-by">
+                            Powered by <strong>Firebase</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="screen-label">Login Screen</div>
+        </div>
+
+        <!-- Chat Screen -->
+        <div>
+            <div class="phone-mockup">
+                <div class="phone-header">
+                    <div class="notch"></div>
+                </div>
+                <div class="screen">
+                    <div class="chat-screen">
+                        <div class="chat-header">
+                            <div class="chat-title-section">
+                                <div class="chat-icon">💬</div>
+                                <div class="chat-title">Firebase Chat</div>
+                            </div>
+                            <div class="online-status">
+                                <div class="status-dot"></div>
+                                <span>5 online</span>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-messages">
+                            <!-- Received Message 1 -->
+                            <div class="message message-received">
+                                <div class="avatar">👤</div>
+                                <div class="message-content">
+                                    <div class="sender-name">John Doe</div>
+                                    <div class="message-bubble">
+                                        <div class="message-text">Hey everyone! Welcome to Firebase Chat!</div>
+                                    </div>
+                                    <div class="message-time">10:30 AM</div>
+                                </div>
+                            </div>
+
+                            <!-- Sent Message 1 -->
+                            <div class="message message-sent">
+                                <div class="message-content">
+                                    <div class="message-bubble message-bubble-sent">
+                                        <div class="message-text">Thanks! This is amazing!</div>
+                                    </div>
+                                    <div class="message-time">10:31 AM ✓✓</div>
+                                </div>
+                                <div class="avatar avatar-sent">👤</div>
+                            </div>
+
+                            <!-- Received Message 2 -->
+                            <div class="message message-received">
+                                <div class="avatar">👤</div>
+                                <div class="message-content">
+                                    <div class="sender-name">Jane Smith</div>
+                                    <div class="message-bubble">
+                                        <div class="message-text">Real-time updates are so cool! 🚀</div>
+                                    </div>
+                                    <div class="message-time">10:32 AM</div>
+                                </div>
+                            </div>
+
+                            <!-- Sent Message 2 -->
+                            <div class="message message-sent">
+                                <div class="message-content">
+                                    <div class="message-bubble message-bubble-sent">
+                                        <div class="message-text">Absolutely! Firebase makes it so easy.</div>
+                                    </div>
+                                    <div class="message-time">10:33 AM ✓✓</div>
+                                </div>
+                                <div class="avatar avatar-sent">👤</div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-input-container">
+                            <div class="typing-indicator">Someone is typing...</div>
+                            <div class="input-row">
+                                <input type="text" class="message-input" placeholder="Type a message..." value="Hello!">
+                                <button class="send-btn">➤</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="screen-label">Chat Screen</div>
+        </div>
+
+        <!-- Firestore Console -->
+        <div>
+            <div class="phone-mockup">
+                <div class="phone-header">
+                    <div class="notch"></div>
+                </div>
+                <div class="screen">
+                    <div class="console-screen">
+                        <div class="console-header">🔥 Firebase Firestore Console</div>
+                        
+                        <div class="console-path">
+                            📁 /chats/messages
+                        </div>
+                        
+                        <div class="console-data">
+                            <div><span class="console-key">messageId:</span> <span class="console-string">"msg_001"</span></div>
+                            <div><span class="console-key">sender:</span> <span class="console-string">"john@example.com"</span></div>
+                            <div><span class="console-key">message:</span> <span class="console-string">"Hey everyone!"</span></div>
+                            <div><span class="console-key">timestamp:</span> <span class="console-number">1738224600000</span></div>
+                        </div>
+                        
+                        <div class="console-data">
+                            <div><span class="console-key">messageId:</span> <span class="console-string">"msg_002"</span></div>
+                            <div><span class="console-key">sender:</span> <span class="console-string">"user@example.com"</span></div>
+                            <div><span class="console-key">message:</span> <span class="console-string">"Thanks! Amazing!"</span></div>
+                            <div><span class="console-key">timestamp:</span> <span class="console-number">1738224660000</span></div>
+                        </div>
+                        
+                        <div class="console-data">
+                            <div><span class="console-key">messageId:</span> <span class="console-string">"msg_003"</span></div>
+                            <div><span class="console-key">sender:</span> <span class="console-string">"jane@example.com"</span></div>
+                            <div><span class="console-key">message:</span> <span class="console-string">"Real-time updates! 🚀"</span></div>
+                            <div><span class="console-key">timestamp:</span> <span class="console-number">1738224720000</span></div>
+                        </div>
+                        
+                        <div style="margin-top: 20px; padding: 12px; background: #1e272e; border-radius: 8px; border-left: 3px solid #2196f3;">
+                            <div style="color: #90caf9; font-size: 12px; margin-bottom: 8px;">✓ Real-time Listener Active</div>
+                            <div style="color: #a5d6a7; font-size: 11px;">● Connected to Firestore</div>
+                            <div style="color: #a5d6a7; font-size: 11px;">● Listening for changes...</div>
+                            <div style="color: #a5d6a7; font-size: 11px;">● Authentication: Enabled</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="screen-label">Firestore Console</div>
+        </div>
+    </div>
+</body>
+</html>
